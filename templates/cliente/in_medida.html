@@ -1,0 +1,95 @@
+{% extends "cliente/layout.html" %}
+{% block content %}
+<div class="container py-5">
+    <div class="row py-5">
+        <!-- /. ROW  -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <form class="col-md-9 m-auto" action="/cliente/in_medida" method="post" role="form">
+            <div class="row">
+                <div class="form-group col-md-6 mb-3" hidden>
+                    <label for="inputemail">id_medida</label>
+                    <input type="text" class="form-control mt-1" id="medida" name="id_medida" value="" placeholder="">
+                </div>
+                <div class="form-group col-md-6 mb-3" hidden>
+                    <label for="inputemail">id_cliente</label>
+                    <input type="text" class="form-control mt-1" id="name" name="id_cliente" value="{{id_cliente}}"
+                        placeholder="">
+                </div>
+                <div class=" mb-3">
+                    <label for="inputemail">Medida ancho de espalda</label>
+                    <input type="number" class="form-control mt-1" id="espalda" name="espalda" placeholder="medida en cm"
+                        rows="8">
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="inputsubject">Contorno de busto</label>
+                <input type="number" class="form-control mt-1" id="busto" name="busto" placeholder="cintura">
+            </div>
+            <div class="mb-3">
+                <label for="inputmessage">Acho de brazo</label>
+                <input type="number" class="form-control mt-1" id="a_brazo" name="a_brazo" placeholder="medida en cm"
+                    rows="8"></input>
+            </div>
+            <div class="mb-3">
+                <label for="inputmessage">Largo de brazo</label>
+                <input type="number" class="form-control mt-1" id="l_brazo" name="l_brazo" placeholder="medida en cm"
+                    rows="8"></input>
+            </div>
+            <div class="mb-3">
+                <label for="inputmessage">Ancho de puño</label>
+                <input type="number" class="form-control mt-1" id="a_puño" name="a_puño" placeholder="medida en cm"
+                    rows="8"></input>
+            </div>
+            <div class="mb-3">
+                <label for="inputmessage">Talla de espalda</label>
+                <input type="number" class="form-control mt-1" id="t_espalda" name="t_espalda" placeholder="medida en cm" rows="8"></input>
+            </div>
+            <div class="mb-3">
+                <label for="inputmessage">Talla delantero</label>
+                <input type="number" class="form-control mt-1" id="t_delantero" name="t_delantero" placeholder="medida en cm" rows="8"></input>
+            </div>
+            <div class="mb-3">
+                <label for="inputmessage">Largo de pinza</label>
+                <input type="number" class="form-control mt-1" id="l_pinza" name="l_pinza" placeholder="medida en cm"  rows="8"></input>
+            </div>
+            <div class="mb-3">
+                <label for="inputmessage">Cintura</label>
+                <input type="number" class="form-control mt-1" id="cintura" name="cintura" placeholder="medida en cm" rows="8"></input>
+            </div>
+            <div class="mb-3">
+                <label for="inputmessage">Largo de falda</label>
+                <input type="number" class="form-control mt-1" id="l_falda" name="l_falda" placeholder="medida en cm" rows="8"></input>
+            </div>
+            <div class="mb-3">
+                <label for="inputmessage">Largo de pierna</label>
+                <input type="number" class="form-control mt-1" id="l_pierna" name="l_pierna" placeholder="medida en cm"  rows="8"></input>
+            </div>
+            <div class="mb-3">
+                <label for="inputmessage">Ancho de pierna</label>
+                <input type="number" class="form-control mt-1" id="a_pierna" name="a_pierna"  placeholder="medida en cm" rows="8"></input>
+            </div>
+            <div class="mb-3">
+                <label for="inputmessage">Largo de tiro</label>
+                <input type="number" class="form-control mt-1" id="l_tiro" name="l_tiro"  placeholder="medida en cm" rows="8"></input>
+            </div>
+            <div class="mb-3">
+                <label for="inputmessage">Largo de rodilla</label>
+                <input type="number" class="form-control mt-1" id="l_rodilla" name="l_rodilla" placeholder="medida en cm" rows="8"></input>
+            </div>
+            <div class="row">
+                <div class="col text-end mt-2">
+                    <button type="submit" class="btn btn-success btn-lg px-3">Guardar medida</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

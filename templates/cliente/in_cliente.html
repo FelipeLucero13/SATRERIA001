@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Registro</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" href="/static/assets/img/apple-icon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="/static/assets/img/favicon.ico">
+
+    <link rel="stylesheet" href="/static/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/assets/css/templatemo.css">
+    <link rel="stylesheet" href="/static/assets/css/custom.css">
+    <!-- SWEETALERT SCRIPTS -->
+    <script src="/static/assets/js/sweetalert211.js"></script>
+    
+    <!-- Load fonts style after rendering the layout styles -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
+    <link rel="stylesheet" href="assets/css/fontawesome.min.css">
+
+    <!-- Load map styles -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+    <!--
+    
+TemplateMo 559 Zay Shop
+
+https://templatemo.com/tm-559-zay-shop
+
+-->
+</head>
+
+<body>
+    <!-- Start Top Nav -->
+
+    <!-- Close Top Nav -->
+
+
+    <!-- Header -->
+    <!-- Close Header -->
+
+    <!-- Modal -->
+    <div class="modal fade bg-white" id="templatemo_search" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+
+           
+        </div>
+    </div>
+    <!-- Start Contact -->
+
+    <div class="container py-5">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <div class="row py-5">
+            
+            <form class="col-md-9 m-auto" action="/cliente/in_cliente" method="post" role="form">
+                <h1 class="navbar-brand text-success logo h2 align-self-center">Crea una cuenta para obtener los productos</h1>
+                <br>    
+                <div class="row">
+                    <br>
+                    <br>
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="inputname">Nombre de usuario</label>
+                        <input type="text" class="form-control mt-1" id="name" name="user" placeholder="Usuario123">
+                    </div>
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="inputemail">Nombre</label>
+                        <input type="text" class="form-control mt-1" id="apellido" name="apellido" placeholder="Nombre">
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="inputsubject">Celular</label>
+                    <input type="text" class="form-control mt-1" id="telefono" name="telefono" placeholder="celular">
+                </div>
+                <div class="mb-3">
+                    <label for="inputmessage">Correo</label>
+                    <input type="email" class="form-control mt-1" id="correo" name="correo" placeholder="correo"
+                        rows="8"></input>
+                </div>
+
+                <div class="mb-3">
+                    <label for="inputmessage">Contraseña</label>
+                    <input type="password" class="form-control mt-1" id="contraseña" name="contraseña"
+                        placeholder="contraseña" rows="8"></input>
+                </div>
+                <div class="row">
+                    <div class="col text-end mt-2">
+                        <button type="submit" class="btn btn-success btn-lg px-3">Registrarme</button>
+                        <a href="/"  class="btn btn-secondary btn-lg px-3">Regresar</a>
+                    </div>
+                </div>
+                <!-- /. ROW  -->
+
+            </form>
+        </div>
+    </div>
+    <!-- End Contact -->
+
+
+    <!-- Start Footer -->
+
+    <script>
+        // Validacion si los campos estan vacios
+        document.querySelector('form').onsubmit = function (e) {
+            var inputs = this.querySelectorAll('input');
+            var todosLlenos = true; // Asume que todos los campos están llenos
+
+            for (var i = 0; i < inputs.length; i++) {
+                if (inputs[i].value === '') {
+                    todosLlenos = false; // Si un campo está vacío, establece todosLlenos en falso
+                    break; // No necesitas verificar el resto de los campos, así que puedes salir del bucle
+                }
+            }
+
+            if (!todosLlenos) {
+                e.preventDefault(); // Previene el envío del formulario
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Campos estan vacios'
+                });
+            }
+        };
+
+
+        // Validar Correo
+        function validarcorreo() {
+            let correo = document.getElementById('correo').value;
+            let regex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
+            if (!regex.test(correo)) {
+                alert('Por favor, ingresa un correo válido');
+                return false;
+            }
+        }
+
+        // Validacion de numero telefonico
+        document.querySelector('form').addEventListener('submit', function (event) {
+            var telefono = document.querySelector('input[name="telefono"]').value;
+            var regex = /^09\d{8}$/; // Expresión regular para validar números de celular ecuatorianos
+
+            if (!regex.test(telefono)) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'El celular esta incorrecto'
+                });
+                event.preventDefault(); // Evita que el formulario se envíe
+            }
+        });
+    </script>
+    <!-- End Footer -->
+
+    <!-- Start Script -->
+    <script src="/static/assets/js/jquery-1.11.0.min.js"></script>
+    <script src="/static/assets/js/jquery-migrate-1.2.1.min.js"></script>
+    <script src="/static/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/assets/js/templatemo.js"></script>
+    <script src="/static/assets/js/custom.js"></script>
+    <!-- End Script -->
+</body>
+
+</html>
